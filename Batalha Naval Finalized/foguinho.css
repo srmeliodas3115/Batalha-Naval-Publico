@@ -1,0 +1,200 @@
+/* Zerar margens e definir box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Estilos gerais do body */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url("fogo.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Adiciona uma camada escura semitransparente se necessário */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Cor preta com 50% de transparência */
+    z-index: -1; /* Coloca atrás do conteúdo */
+}
+
+/* Header */
+header {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    position: relative; /* Garante que o header fique acima da camada escura */
+    z-index: 1;
+    font-family: "Baskervville SC", serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+/* Estilo do menu */
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Estilo do botão com efeito de fogo */
+.mode-selection button {
+    position: relative; /* Garante que o efeito de fogo esteja posicionado corretamente */
+    overflow: hidden; /* Esconde partes da animação que saem do botão */
+    padding: 15px 32px;
+    margin: 10px;
+    border: 2px solid transparent; /* Borda transparente para a animação */
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    background: linear-gradient(45deg, #ff4d4d, #ff7f7f); /* Gradiente básico do botão */
+    text-shadow: 0 0 5px rgba(255, 69, 0, 0.8); /* Sombra do texto para efeito de chama */
+}
+
+/* Camada de fogo */
+.mode-selection button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 69, 0, 0.8) 0%, rgba(255, 69, 0, 0) 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    animation: fire 2s infinite; /* Aplica a animação de fogo */
+}
+
+/* Animação do efeito de fogo */
+@keyframes fire {
+    0% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 0.8;
+        background: radial-gradient(circle, rgba(255, 69, 0, 0.8) 0%, rgba(255, 69, 0, 0) 70%);
+    }
+    25% {
+        background: radial-gradient(circle, rgba(255, 69, 0, 1) 0%, rgba(255, 69, 0, 0.3) 50%);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.5) rotate(180deg);
+        background: radial-gradient(circle, rgba(255, 69, 0, 0.8) 0%, rgba(255, 69, 0, 0) 70%);
+        opacity: 0.6;
+    }
+    75% {
+        background: radial-gradient(circle, rgba(255, 69, 0, 1) 0%, rgba(255, 69, 0, 0.2) 50%);
+        opacity: 0.9;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1) rotate(360deg);
+        background: radial-gradient(circle, rgba(255, 69, 0, 0.8) 0%, rgba(255, 69, 0, 0) 70%);
+        opacity: 0.8;
+    }
+}
+
+/* Efeito de foco para animação */
+.mode-selection button:hover {
+    animation: none; /* Remove a animação ao passar o mouse para evitar sobreposição */
+    background: linear-gradient(45deg, #ff4d4d, #ffb84d); /* Gradiente animado */
+    text-shadow: 0 0 8px rgba(255, 69, 0, 1); /* Intensifica o brilho do texto */
+}
+
+/* Estilo adicional para uma aparência mais atraente */
+.mode-selection button:active {
+    background: linear-gradient(45deg, #ff4d4d, #ff7f7f); /* Muda a cor ao clicar */
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.8), 0 0 25px rgba(255, 69, 0, 0.6); /* Efeito de fogo intenso ao clicar */
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+    flex: 1; /* Faz com que o main expanda para ocupar o espaço entre o header e o footer */
+    position: relative; /* Garante que o main fique acima da camada escura */
+    z-index: 1;
+}
+
+/* Carrossel de notícias */
+.carousel {
+    width: 80%;
+    margin: 20px auto;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 5px;
+    border-radius: 30px;
+}
+
+.carousel-track {
+    display: flex;
+    animation: scroll 20s linear infinite;
+    color: #000000;
+}
+
+/* Duplicando o conteúdo para tornar a animação contínua */
+.carousel-track p {
+    flex: none;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 18px;
+    font-weight: bold; /* Texto em negrito */
+}
+
+/* Estilo para destacar "Notícia" */
+.highlight {
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* Animação contínua */
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-200%); }
+}
+
+/* Footer */
+footer {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    padding: 30px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 1;
+}
